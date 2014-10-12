@@ -27,18 +27,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-isValidEmail = require('./lib/isValidEmail')
-
 app.get('/', routes.index);
-app.post('/submitEmail', function (req, res) {
-  console.log(req.body.email);
-  var email = req.body.email;
-  if (isValidEmail(email)) {
-    res.send('Nice job!')
-  } else {
-    res.send('Your email fails. HIT THE BACK BUTTON')
-  }
-})
+app.post('/submitEmail', routes.submitEmail)
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){

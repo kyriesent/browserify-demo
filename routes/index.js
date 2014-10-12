@@ -7,8 +7,9 @@ exports.index = function(req, res) {
   res.render('index', { title: 'Browserify Demo' });
 };
 
+isValidEmail = require('./lib/isValidEmail')
+
 exports.submitEmail = function(req, res) {
-  console.log(req.body.email);
   var email = req.body.email;
   if (isValidEmail(email)) {
     res.send('Nice job!')
